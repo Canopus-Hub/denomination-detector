@@ -9,9 +9,11 @@ def currency_classification(img, weights_file):
     model = tensorflow.keras.models.load_model(weights_file)
 
     # Create the array of the right shape to feed into the keras model
+    # The 'length' or number of images you can put into the array is
+    # determined by the first position in the shape tuple, in this case 1.
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
     image = img
-    #image sizing
+    ##resizing the image to be at least 224x224 and then cropping from the center
     size = (224, 224)
     image = ImageOps.fit(image, size, Image.ANTIALIAS)
 
